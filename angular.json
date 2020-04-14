@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/cloudflare/stream-angular",
       "sourceRoot": "projects/cloudflare/stream-angular/src",
-      "prefix": "lib",
+      "prefix": "cf",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -36,12 +36,11 @@
               "projects/cloudflare/stream-angular/tsconfig.lib.json",
               "projects/cloudflare/stream-angular/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "@cloudflare/stream-angular"
 }

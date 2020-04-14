@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { StreamAngularComponent } from './stream-angular.component';
-
-
 
 @NgModule({
   declarations: [StreamAngularComponent],
-  imports: [
-  ],
-  exports: [StreamAngularComponent]
+  schemas: [NO_ERRORS_SCHEMA],
+  imports: [],
+  exports: [StreamAngularComponent],
 })
-export class StreamAngularModule { }
+export class StreamAngularModule {}
