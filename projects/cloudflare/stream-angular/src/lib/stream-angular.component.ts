@@ -7,7 +7,6 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Output,
   Renderer2,
   SimpleChanges,
@@ -26,6 +25,8 @@ const propertyProps = [
 
 @Component({
   selector: 'cf-stream',
+  // attr. prefix is required for our attributes since <stream /> is a non-standard
+  // element and angular will not bind the attributes without it.
   template: `
     <stream
       #streamEl
@@ -69,22 +70,22 @@ const propertyProps = [
   styles: [],
 })
 export class StreamAngularComponent
-  implements OnInit, OnDestroy, AfterViewInit, OnChanges {
-  streamScript?: HTMLScriptElement;
+  implements OnDestroy, AfterViewInit, OnChanges {
+  // place to store reference to the script tag added to the dom
+  private streamScript?: HTMLScriptElement;
 
   @Input() adUrl: string;
-  @Input() src: string;
-  @Input() height: string;
-  @Input() width: string;
-  @Input() poster: string;
-
   @Input() autoplay: boolean;
   @Input() controls: boolean;
   @Input() currentTime: number;
-  @Input() muted: boolean;
+  @Input() height: string;
   @Input() loop: boolean;
-  @Input() volume: number;
+  @Input() muted: boolean;
+  @Input() poster: string;
   @Input() preload: 'auto' | 'metadata' | 'none' | boolean;
+  @Input() src: string;
+  @Input() volume: number;
+  @Input() width: string;
 
   // tslint:disable: no-output-native
   @Output() abort = new EventEmitter<CustomEvent>();
@@ -119,23 +120,34 @@ export class StreamAngularComponent
     @Inject(DOCUMENT) private doc: Document
   ) {}
 
-  ngOnChanges(c: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges) {
+    // ngOnChanges fires when the component mounts but before the view
+    // is initialized, so we need to bail when this fires for the first
+    // time.
     if (!this.streamEl) {
       return;
     }
+    // convert SimpleChanges into a Record that has currentValues to be
+    // synced onto streamEl
     this.syncProperties(
-      Object.entries(c).reduce(
-        (acc, [key, value]) => ({
+      Object.keys(changes).reduce(
+        (acc, key) => ({
           ...acc,
-          [key]: value.currentValue,
+          [key]: changes[key].currentValue,
         }),
         {}
       )
     );
   }
 
-  syncProperties(properties) {
+  /**
+   * Method to take an object and sync keys from propertyProps onto
+   * the stream element
+   */
+  private syncProperties(properties: Record<string, any>) {
+    // iterate over the propertyProps and assign them to the streamEl
     propertyProps.forEach((prop) => {
+      // only assign the property if it is present
       if (properties.hasOwnProperty(prop)) {
         this.streamEl.nativeElement[prop] = properties[prop];
       }
@@ -143,7 +155,10 @@ export class StreamAngularComponent
   }
 
   ngAfterViewInit() {
+    // streamEl is first available within ngAfterViewInit, so we need to sync
+    // properties onto the element
     this.syncProperties(
+      // pluck current propertyProps off of the component instance to sync them to streamEl
       propertyProps.reduce((acc, prop) => ({ ...acc, [prop]: this[prop] }), {})
     );
     this.loadStreamScript();
@@ -158,14 +173,12 @@ export class StreamAngularComponent
       'src',
       'https://embed.videodelivery.net/embed/r4xu.fla9.latest.js'
     );
-    this.renderer2.appendChild(this.doc.body, this.streamScript);
+    this.renderer2.appendChild(this.doc.head, this.streamScript);
   }
 
   private cleanUpStreamScript() {
-    this.renderer2.removeChild(this.doc.body, this.streamScript);
+    this.renderer2.removeChild(this.doc.head, this.streamScript);
   }
-
-  public ngOnInit() {}
 
   public ngOnDestroy() {
     this.cleanUpStreamScript();
