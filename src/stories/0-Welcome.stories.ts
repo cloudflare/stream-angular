@@ -2,7 +2,6 @@ import { StreamAngularComponent } from 'projects/cloudflare/stream-angular/src/p
 import { IStory } from '@storybook/angular';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import { actions } from './actions';
 
 const defaultVideoId = '644822f93dcddab3e9441587d184ca2f';
@@ -132,7 +131,34 @@ export const poster = (): IStory => ({
     ...actions,
     src: defaultVideoId,
     controls: true,
-    poster: `https://videodelivery.net/644822f93dcddab3e9441587d184ca2f/thumbnails/thumbnail.jpg?time=109s&height=1400`,
+    poster: text(
+      'poster',
+      'https://videodelivery.net/644822f93dcddab3e9441587d184ca2f/thumbnails/thumbnail.jpg?time=109s&height=1200'
+    ),
   },
   moduleMetadata,
 });
+
+export const adUrl = () => ({
+  component: StreamAngularComponent,
+  props: {
+    ...actions,
+    src: defaultVideoId,
+    controls: true,
+    adUrl: text(
+      'adUrl',
+      'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator='
+    ),
+  },
+  moduleMetadata,
+});
+
+adUrl.story = {
+  decorators: [
+    withKnobs({
+      // Necessary to prevent adUrl from being escaped
+      // https://github.com/storybookjs/storybook/issues/4445
+      escapeHTML: false,
+    }),
+  ],
+};
