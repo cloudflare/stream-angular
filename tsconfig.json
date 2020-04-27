@@ -13,9 +13,9 @@
     "target": "es2015",
     "lib": ["es2018", "dom"],
     "paths": {
-      "@cloudflare/stream-angular": [
-        "dist/cloudflare/stream-angular/cloudflare-stream-angular",
-        "dist/cloudflare/stream-angular"
+      "cloudflare-stream": [
+        "dist/cloudflare-stream/cloudflare-stream",
+        "dist/cloudflare-stream"
       ]
     }
   },

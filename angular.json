@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@cloudflare/stream-angular": {
+    "cloudflare-stream": {
       "projectType": "library",
-      "root": "projects/cloudflare/stream-angular",
-      "sourceRoot": "projects/cloudflare/stream-angular/src",
-      "prefix": "cf",
+      "root": "projects/cloudflare-stream",
+      "sourceRoot": "projects/cloudflare-stream/src",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/cloudflare/stream-angular/tsconfig.lib.json",
-            "project": "projects/cloudflare/stream-angular/ng-package.json"
+            "tsConfig": "projects/cloudflare-stream/tsconfig.lib.json",
+            "project": "projects/cloudflare-stream/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/cloudflare/stream-angular/tsconfig.lib.prod.json"
+              "tsConfig": "projects/cloudflare-stream/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/cloudflare/stream-angular/src/test.ts",
-            "tsConfig": "projects/cloudflare/stream-angular/tsconfig.spec.json",
-            "karmaConfig": "projects/cloudflare/stream-angular/karma.conf.js"
+            "main": "projects/cloudflare-stream/src/test.ts",
+            "tsConfig": "projects/cloudflare-stream/tsconfig.spec.json",
+            "karmaConfig": "projects/cloudflare-stream/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/cloudflare/stream-angular/tsconfig.lib.json",
-              "projects/cloudflare/stream-angular/tsconfig.spec.json"
+              "projects/cloudflare-stream/tsconfig.lib.json",
+              "projects/cloudflare-stream/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -42,5 +42,5 @@
       }
     }
   },
-  "defaultProject": "@cloudflare/stream-angular"
+  "defaultProject": "cloudflare-stream"
 }

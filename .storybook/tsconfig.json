@@ -1,5 +1,5 @@
 {
-  "extends": "../projects/cloudflare/stream-angular/tsconfig.lib.json",
+  "extends": "../projects/cloudflare-stream/tsconfig.lib.json",
   "compilerOptions": {
     "types": ["node"]
   },

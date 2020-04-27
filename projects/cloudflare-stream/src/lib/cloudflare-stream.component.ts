@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -12,6 +11,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { DocumentWrapper } from './document-wrapper';
 
 const propertyProps = [
   'autoplay',
@@ -69,7 +69,7 @@ const propertyProps = [
   `,
   styles: [],
 })
-export class StreamAngularComponent
+export class CloudflareStreamComponent
   implements OnDestroy, AfterViewInit, OnChanges {
   // place to store reference to the script tag added to the dom
   private streamScript?: HTMLScriptElement;
@@ -232,7 +232,7 @@ export class StreamAngularComponent
 
   constructor(
     private renderer2: Renderer2,
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DocumentWrapper) private doc: DocumentWrapper
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {

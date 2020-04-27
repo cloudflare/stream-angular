@@ -1,4 +1,4 @@
-import { StreamAngularComponent } from 'projects/cloudflare/stream-angular/src/public-api';
+import { CloudflareStreamComponent } from 'projects/cloudflare-stream/src/public-api';
 import { IStory } from '@storybook/angular';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
@@ -13,11 +13,11 @@ const moduleMetadata = {
 export default {
   title: 'Stream Player',
   decorators: [withKnobs],
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
 };
 
 export const src = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: text('src', defaultVideoId),
@@ -27,7 +27,7 @@ export const src = (): IStory => ({
 });
 
 export const muted = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -38,7 +38,7 @@ export const muted = (): IStory => ({
 });
 
 export const preload = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -49,7 +49,7 @@ export const preload = (): IStory => ({
 });
 
 export const autoplay = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -61,7 +61,7 @@ export const autoplay = (): IStory => ({
 });
 
 export const controls = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -71,7 +71,7 @@ export const controls = (): IStory => ({
 });
 
 export const loop = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -82,7 +82,7 @@ export const loop = (): IStory => ({
 });
 
 export const currentTime = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -98,7 +98,7 @@ export const currentTime = (): IStory => ({
 });
 
 export const volume = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -114,7 +114,7 @@ export const volume = (): IStory => ({
 });
 
 export const fixedDimensions = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -126,7 +126,7 @@ export const fixedDimensions = (): IStory => ({
 });
 
 export const poster = (): IStory => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
@@ -140,7 +140,7 @@ export const poster = (): IStory => ({
 });
 
 export const adUrl = () => ({
-  component: StreamAngularComponent,
+  component: CloudflareStreamComponent,
   props: {
     ...actions,
     src: defaultVideoId,
