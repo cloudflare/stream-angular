@@ -24,7 +24,7 @@ const propertyProps = [
 ];
 
 @Component({
-  selector: 'cf-stream',
+  selector: 'cloudflare-stream',
   // attr. prefix is required for our attributes since <stream /> is a non-standard
   // element and angular will not bind the attributes without it.
   template: `

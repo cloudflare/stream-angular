@@ -31,14 +31,17 @@ export class AppModule {}
 `app.component.html`
 
 ```html
-<cf-stream [controls]="true" src="644822f93dcddab3e9441587d184ca2f"></cf-stream>
+<cloudflare-stream
+  [controls]="true"
+  src="644822f93dcddab3e9441587d184ca2f"
+></cloudflare-stream>
 ```
 
 ## API
 
 ```ts
 @Component({
-  selector: "cf-stream",
+  selector: "cloudflare-stream",
   // ...
 })
 export class CloudflareStreamComponent {
