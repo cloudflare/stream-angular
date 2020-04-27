@@ -8,7 +8,7 @@
     "directory": "projects/cloudflare-stream"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "peerDependencies": {
     "@angular/common": "^9.1.1",
