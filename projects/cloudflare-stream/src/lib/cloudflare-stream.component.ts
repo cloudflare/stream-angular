@@ -295,7 +295,7 @@ export class CloudflareStreamComponent
     this.renderer2.removeChild(this.doc.head, this.streamScript);
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy() {
     this.cleanUpStreamScript();
   }
 }
