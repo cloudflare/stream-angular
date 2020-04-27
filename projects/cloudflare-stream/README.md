@@ -98,8 +98,6 @@ export class CloudflareStreamComponent {
    * The width of the video’s display area, in CSS pixels.
    */
   @Input() width: string;
-
-  // tslint:disable: no-output-native
   /**
    * Sent when playback is aborted; for example, if the media is playing and is restarted from the beginning, this event is sent.
    */
@@ -160,7 +158,6 @@ export class CloudflareStreamComponent {
    * Sent when a seek operation completes.
    */
   @Output() seeked = new EventEmitter<CustomEvent>();
-
   /**
    * Sent when a seek operation begins.
    */
