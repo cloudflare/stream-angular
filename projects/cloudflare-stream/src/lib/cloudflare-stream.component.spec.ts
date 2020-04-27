@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CloudflareStreamComponent } from './cloudflare-stream.component';
+import { getDocument, DocumentWrapper } from './document-wrapper';
 
 describe('CloudflareStreamComponent', () => {
   let component: CloudflareStreamComponent;
@@ -8,9 +9,9 @@ describe('CloudflareStreamComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CloudflareStreamComponent ]
-    })
-    .compileComponents();
+      declarations: [CloudflareStreamComponent],
+      providers: [{ provide: DocumentWrapper, useFactory: getDocument }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
