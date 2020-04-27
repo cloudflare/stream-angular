@@ -7,7 +7,7 @@
     "url": "https://github.com/cloudflare/stream-angular"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "peerDependencies": {
     "@angular/common": "^9.1.1",
