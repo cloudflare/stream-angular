@@ -4,7 +4,8 @@
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cloudflare/stream-angular"
+    "url": "https://github.com/cloudflare/stream-angular",
+    "directory": "projects/cloudflare-stream"
   },
   "publishConfig": {
     "access": "restricted"
