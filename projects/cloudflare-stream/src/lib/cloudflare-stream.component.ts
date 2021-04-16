@@ -274,7 +274,12 @@ export class CloudflareStreamComponent
     // properties onto the element
     this.syncProperties(
       // pluck current propertyProps off of the component instance to sync them to streamEl
-      propertyProps.reduce((acc, prop) => ({ ...acc, [prop]: this[prop] }), {})
+      propertyProps.reduce(
+        (acc, prop) =>
+          // skip values that are undefined
+          this[prop] === undefined ? acc : { ...acc, [prop]: this[prop] },
+        {}
+      )
     );
     this.loadStreamScript();
   }
