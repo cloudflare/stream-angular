@@ -3,11 +3,16 @@ import { IStory } from '@storybook/angular';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { actions } from './actions';
+import {
+  DocumentWrapper,
+  getDocument,
+} from '../../projects/cloudflare-stream/src/lib/document-wrapper';
 
 const defaultVideoId = '644822f93dcddab3e9441587d184ca2f';
 
 const moduleMetadata = {
   schemas: [NO_ERRORS_SCHEMA],
+  providers: [{ provide: DocumentWrapper, useFactory: getDocument }],
 };
 
 export default {
@@ -55,6 +60,7 @@ export const autoplay = (): IStory => ({
     src: defaultVideoId,
     controls: true,
     autoplay: boolean('autoplay', true),
+    muted: boolean('muted', true),
     ...actions,
   },
   moduleMetadata,
