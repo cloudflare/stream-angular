@@ -21,6 +21,7 @@ const propertyProps = [
   'loop',
   'volume',
   'preload',
+  'defaultTextTrack',
 ];
 
 @Component({
@@ -34,6 +35,7 @@ const propertyProps = [
       [attr.src]="src"
       [attr.autoplay]="autoplay"
       [attr.controls]="controls"
+      [attr.default-text-track]="defaultTextTrack"
       [attr.loop]="loop"
       [attr.preload]="preload"
       [attr.height]="height"
@@ -94,6 +96,10 @@ export class CloudflareStreamComponent
    * Returns the current playback time in seconds. Setting this value seeks the video to a new time.
    */
   @Input() currentTime: number;
+  /**
+   * Returns the current playback time in seconds. Setting this value seeks the video to a new time.
+   */
+  @Input() defaultTextTrack: string;
   /**
    * The height of the video’s display area, in CSS pixels.
    */
