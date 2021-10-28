@@ -145,6 +145,17 @@ export const poster = (): IStory => ({
   moduleMetadata,
 });
 
+export const primaryColor = (): IStory => ({
+  component: CloudflareStreamComponent,
+  props: {
+    ...actions,
+    src: defaultVideoId,
+    controls: true,
+    primaryColor: text('primaryColor', 'orange'),
+  },
+  moduleMetadata,
+});
+
 export const adUrl = () => ({
   component: CloudflareStreamComponent,
   props: {

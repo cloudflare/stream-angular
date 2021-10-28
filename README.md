@@ -90,6 +90,11 @@ export class CloudflareStreamComponent {
    */
   @Input() preload: "auto" | "metadata" | "none" | boolean;
   /**
+   * Any valid CSS color value provided will be applied to certain elements of the player's UI.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   */
+  @Input() primaryColor?: string;
+  /**
    * Either the video id or the signed url for the video you’ve uploaded to Cloudflare Stream should be included here.
    */
   @Input() src: string;
