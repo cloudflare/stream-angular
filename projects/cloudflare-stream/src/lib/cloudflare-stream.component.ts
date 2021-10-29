@@ -17,6 +17,7 @@ const propertyProps = [
   'autoplay',
   'controls',
   'currentTime',
+  'primaryColor',
   'muted',
   'loop',
   'volume',
@@ -41,6 +42,7 @@ const propertyProps = [
       [attr.height]="height"
       [attr.width]="width"
       [attr.poster]="poster"
+      [attr.primary-color]="primaryColor"
       [attr.muted]="muted"
       (play)="play.emit($event)"
       (abort)="abort.emit($event)"
@@ -122,6 +124,11 @@ export class CloudflareStreamComponent
    * The <video> element does not force the browser to follow the value of this attribute; it is a mere hint. Even though the preload="none" option is a valid HTML5 attribute, Stream player will always load some metadata to initialize the player. The amount of data loaded in this case is negligable.
    */
   @Input() preload: 'auto' | 'metadata' | 'none' | boolean;
+  /**
+   * Any valid CSS color value provided will be applied to certain elements of the player's UI.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   */
+  @Input() primaryColor?: string;
   /**
    * Either the video id or the signed url for the video you’ve uploaded to Cloudflare Stream should be included here.
    */
