@@ -31,6 +31,16 @@
             "tsConfig": "projects/cloudflare-stream/tsconfig.spec.json",
             "karmaConfig": "projects/cloudflare-stream/karma.conf.js"
           }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {}
         }
       }
     }
