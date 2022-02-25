@@ -23,7 +23,7 @@ const propertyProps = [
   'volume',
   'preload',
   'defaultTextTrack',
-];
+] as const;
 
 @Component({
   selector: 'cloudflare-stream',
@@ -74,14 +74,15 @@ const propertyProps = [
   styles: [],
 })
 export class CloudflareStreamComponent
-  implements OnDestroy, AfterViewInit, OnChanges {
+  implements OnDestroy, AfterViewInit, OnChanges
+{
   // place to store reference to the script tag added to the dom
   private streamScript?: HTMLScriptElement;
 
   /**
    * URL to a VAST advertising tag. If specified, the player will attempt to display ads speficied by the VAST ad schema.
    */
-  @Input() adUrl: string;
+  @Input() adUrl?: string;
   /**
    * Tells the browser to immediately start downloading the video and play it as soon as it can. Note that mobile browsers generally do not support this attribute, the user must tap the screen to begin video playback. Please consider mobile users or users with Internet usage limits as some users don’t have unlimited Internet access before using this attribute.
    *
@@ -89,41 +90,41 @@ export class CloudflareStreamComponent
    *
    * In addition, some browsers now prevent videos with audio from playing automatically. You may add the mute attribute to allow your videos to autoplay. For more information, [go here](https://webkit.org/blog/6784/new-video-policies-for-ios/).
    */
-  @Input() autoplay: boolean;
+  @Input() autoplay?: boolean;
   /**
    * Shows the default video controls such as buttons for play/pause, volume controls. You may choose to build buttons and controls that work with the player.
    */
-  @Input() controls: boolean;
+  @Input() controls?: boolean;
   /**
    * Returns the current playback time in seconds. Setting this value seeks the video to a new time.
    */
-  @Input() currentTime: number;
+  @Input() currentTime?: number;
   /**
    * Returns the current playback time in seconds. Setting this value seeks the video to a new time.
    */
-  @Input() defaultTextTrack: string;
+  @Input() defaultTextTrack?: string;
   /**
    * The height of the video’s display area, in CSS pixels.
    */
-  @Input() height: string;
+  @Input() height?: string;
   /**
    * A Boolean attribute; if included the player will automatically seek back to the start upon reaching the end of the video.
    */
-  @Input() loop: boolean;
+  @Input() loop?: boolean;
   /**
    * A Boolean attribute which indicates the default setting of the audio contained in the video. If set, the audio will be initially silenced.
    */
-  @Input() muted: boolean;
+  @Input() muted?: boolean;
   /**
    * A URL for an image to be shown before the video is started or while the video is downloading. If this attribute isn’t specified, a thumbnail image of the video is shown.
    */
-  @Input() poster: string;
+  @Input() poster?: string;
   /**
    * This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience. You may choose to include this attribute as a boolean attribute without a value, or you may specify the value preload="auto" to preload the beginning of the video. Not including the attribute or using preload="metadata" will just load the metadata needed to start video playback when requested.
    *
    * The <video> element does not force the browser to follow the value of this attribute; it is a mere hint. Even though the preload="none" option is a valid HTML5 attribute, Stream player will always load some metadata to initialize the player. The amount of data loaded in this case is negligable.
    */
-  @Input() preload: 'auto' | 'metadata' | 'none' | boolean;
+  @Input() preload?: 'auto' | 'metadata' | 'none' | boolean;
   /**
    * Any valid CSS color value provided will be applied to certain elements of the player's UI.
    * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
@@ -132,116 +133,116 @@ export class CloudflareStreamComponent
   /**
    * Either the video id or the signed url for the video you’ve uploaded to Cloudflare Stream should be included here.
    */
-  @Input() src: string;
+  @Input() src!: string;
   /**
    * Sets volume from 0.0 (silent) to 1.0 (maximum value)
    */
-  @Input() volume: number;
+  @Input() volume?: number;
   /**
    * The width of the video’s display area, in CSS pixels.
    */
-  @Input() width: string;
+  @Input() width?: string;
 
   // tslint:disable: no-output-native
   /**
    * Sent when playback is aborted; for example, if the media is playing and is restarted from the beginning, this event is sent.
    */
-  @Output() abort = new EventEmitter<CustomEvent>();
+  @Output() abort = new EventEmitter<Event>();
   /**
    * Sent when enough data is available that the media can be played, at least for a couple of frames.
    */
-  @Output() canplay = new EventEmitter<CustomEvent>();
+  @Output() canplay = new EventEmitter<Event>();
   /**
    * Sent when the entire media can be played without interruption, assuming the download rate remains at least at the current level. It will also be fired when playback is toggled between paused and playing. Note: Manually setting the currentTime will eventually fire a canplaythrough event in firefox. Other browsers might not fire this event.
    */
-  @Output() canplaythrough = new EventEmitter<CustomEvent>();
+  @Output() canplaythrough = new EventEmitter<Event>();
   /**
    * The metadata has loaded or changed, indicating a change in duration of the media. This is sent, for example, when the media has loaded enough that the duration is known.
    */
-  @Output() durationchange = new EventEmitter<CustomEvent>();
+  @Output() durationchange = new EventEmitter<Event>();
   /**
    * Sent when playback completes.
    */
-  @Output() ended = new EventEmitter<CustomEvent>();
+  @Output() ended = new EventEmitter<Event>();
   /**
    * Sent when an error occurs. (e.g. the video has not finished encoding yet, or the video fails to load due to an incorrect signed URL)
    */
-  @Output() error = new EventEmitter<CustomEvent>();
+  @Output() error = new EventEmitter<Event>();
   /**
    * The first frame of the media has finished loading.
    */
-  @Output() loadeddata = new EventEmitter<CustomEvent>();
+  @Output() loadeddata = new EventEmitter<Event>();
   /**
    * The media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.
    */
-  @Output() loadedmetadata = new EventEmitter<CustomEvent>();
+  @Output() loadedmetadata = new EventEmitter<Event>();
   /**
    * Sent when loading of the media begins.
    */
-  @Output() loadstart = new EventEmitter<CustomEvent>();
+  @Output() loadstart = new EventEmitter<Event>();
   /**
    * Sent when the playback state is changed to paused (paused property is true).
    */
-  @Output() pause = new EventEmitter<CustomEvent>();
+  @Output() pause = new EventEmitter<Event>();
   /**
    * Sent when the playback state is no longer paused, as a result of the play method, or the autoplay attribute.
    */
-  @Output() play = new EventEmitter<CustomEvent>();
+  @Output() play = new EventEmitter<Event>();
   /**
    * Sent when the media has enough data to start playing, after the play event, but also when recovering from being stalled, when looping media restarts, and after seeked, if it was playing before seeking.
    */
-  @Output() playing = new EventEmitter<CustomEvent>();
+  @Output() playing = new EventEmitter<Event>();
   /**
    * Sent periodically to inform interested parties of progress downloading the media. Information about the current amount of the media that has been downloaded is available in the media element’s buffered attribute.
    */
-  @Output() progress = new EventEmitter<CustomEvent>();
+  @Output() progress = new EventEmitter<Event>();
   /**
    * Sent when the playback speed changes.
    */
-  @Output() ratechange = new EventEmitter<CustomEvent>();
+  @Output() ratechange = new EventEmitter<Event>();
   /**
    * Sent when a seek operation completes.
    */
-  @Output() seeked = new EventEmitter<CustomEvent>();
+  @Output() seeked = new EventEmitter<Event>();
 
   /**
    * Sent when a seek operation begins.
    */
-  @Output() seeking = new EventEmitter<CustomEvent>();
+  @Output() seeking = new EventEmitter<Event>();
   /**
    * Sent when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.
    */
-  @Output() stalled = new EventEmitter<CustomEvent>();
+  @Output() stalled = new EventEmitter<Event>();
   /**
    * Sent when loading of the media is suspended; this may happen either because the download has completed or because it has been paused for any other reason.
    */
-  @Output() suspend = new EventEmitter<CustomEvent>();
+  @Output() suspend = new EventEmitter<Event>();
   /**
    * The time indicated by the element’s currentTime attribute has changed.
    */
-  @Output() timeupdate = new EventEmitter<CustomEvent>();
+  @Output() timeupdate = new EventEmitter<Event>();
   /**
    * Sent when the audio volume changes (both when the volume is set and when the muted attribute is changed).
    */
-  @Output() volumechange = new EventEmitter<CustomEvent>();
+  @Output() volumechange = new EventEmitter<Event>();
   /**
    * Sent when the requested operation (such as playback) is delayed pending the completion of another operation (such as a seek).
    */
-  @Output() waiting = new EventEmitter<CustomEvent>();
+  @Output() waiting = new EventEmitter<Event>();
   /**
    * Fires when ad-url attribute is present and the ad begins playback
    */
-  @Output() streamAdStart = new EventEmitter<CustomEvent>();
+  @Output() streamAdStart = new EventEmitter<Event>();
   /**
    * Fires when ad-url attribute is present and the ad finishes playback
    */
-  @Output() streamAdEnd = new EventEmitter<CustomEvent>();
+  @Output() streamAdEnd = new EventEmitter<Event>();
   /**
    * Fires when ad-url attribute is present and the ad took too long to load.
    */
-  @Output() streamAdTimeout = new EventEmitter<CustomEvent>();
+  @Output() streamAdTimeout = new EventEmitter<Event>();
 
-  @ViewChild('streamEl') streamEl;
+  @ViewChild('streamEl') streamEl!: any;
 
   constructor(
     private renderer2: Renderer2,

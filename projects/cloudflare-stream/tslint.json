@@ -1,7 +1,0 @@
-{
-  "extends": "../../tslint.json",
-  "rules": {
-    "directive-selector": [true, "attribute", "cloudflare", "camelCase"],
-    "component-selector": [true, "element", "cloudflare", "kebab-case"]
-  }
-}
