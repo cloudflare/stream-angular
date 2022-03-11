@@ -10,16 +10,19 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/cloudflare-stream/tsconfig.lib.json",
             "project": "projects/cloudflare-stream/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/cloudflare-stream/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/cloudflare-stream/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -29,15 +32,15 @@
             "karmaConfig": "projects/cloudflare-stream/karma.conf.js"
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
           "options": {
-            "tsConfig": [
-              "projects/cloudflare-stream/tsconfig.lib.json",
-              "projects/cloudflare-stream/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "port": 6006
           }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {}
         }
       }
     }

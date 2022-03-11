@@ -19,7 +19,7 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: yarn test-headless
       # Only publish when tag does not include beta or rc suffix
-      - run: if [[ ${TAG_NAME} =~ ^v[0-9]+.[0-9]+.[0-9]+$ ]]; then yarn build --prod && cd dist/cloudflare-stream && npm publish; fi
+      - run: if [[ ${TAG_NAME} =~ ^v[0-9]+.[0-9]+.[0-9]+$ ]]; then yarn build && cd dist/cloudflare-stream && npm publish; fi
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
           TAG_NAME: ${{github.event.release.tag_name}}
