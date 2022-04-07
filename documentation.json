@@ -25,7 +25,7 @@
         },
         {
             "name": "DocumentWrapper",
-            "id": "injectable-DocumentWrapper-1aa0f7b02ff1e4962b90d4ea29eb7046411204464bcf2365b54737feca573b4ac506f7e9ec62ac8f09bccbe1950cef993db8f61b8465def5d3904520ed73bd73",
+            "id": "injectable-DocumentWrapper-1d18adf8d1f11d8eb836a1ac80bf3d5805f9a06572ddb6b55dbda09e7ff2288be77b4055d70221b44c0a67a785f3fe1072f64ac8cc48554622d7efce2c78cd89",
             "file": "projects/cloudflare-stream/src/lib/document-wrapper.ts",
             "properties": [],
             "methods": [],
@@ -33,8 +33,18 @@
             "deprecationMessage": "",
             "description": "<p>We have to export this interface so the module can be compiled\nwith the AOT flag enabled.</p>\n<p><a href=\"https://github.com/angular/angular/issues/14050\">https://github.com/angular/angular/issues/14050</a></p>\n",
             "rawdescription": "\n\nWe have to export this interface so the module can be compiled\nwith the AOT flag enabled.\n\nhttps://github.com/angular/angular/issues/14050\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\n\n/**\n * We have to export this interface so the module can be compiled\n * with the AOT flag enabled.\n *\n * https://github.com/angular/angular/issues/14050\n */\n\n@Injectable()\nexport class DocumentWrapper extends Document {}\n\nexport function getDocument(): DocumentWrapper {\n  return document;\n}\n",
-            "extends": "Document",
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n/**\n * We have to export this interface so the module can be compiled\n * with the AOT flag enabled.\n *\n * https://github.com/angular/angular/issues/14050\n */\n\n@Injectable()\nexport class DocumentWrapper {\n  get nativeDocument() {\n    return document;\n  }\n}\n\nexport function getDocumentWrapper() {\n  return new DocumentWrapper();\n}\n",
+            "accessors": {
+                "nativeDocument": {
+                    "name": "nativeDocument",
+                    "getSignature": {
+                        "name": "nativeDocument",
+                        "type": "",
+                        "returnType": "",
+                        "line": 12
+                    }
+                }
+            },
             "type": "injectable"
         }
     ],
@@ -45,7 +55,7 @@
     "components": [
         {
             "name": "CloudflareStreamComponent",
-            "id": "component-CloudflareStreamComponent-0601da033cfc3550e6315c71e3317b0720fc92709323d715167ccb82ce4b3d43eafc222d87f8291191299dea183f96b1dda3347998bc744b0893ecf41c902301",
+            "id": "component-CloudflareStreamComponent-00657d80d4223d5131db776c2673621d71454e5f2abdf35274c4105780128580ead1f19c5576b7130c836cffec66e55700e1f726b6f620be86065bb66551803f",
             "file": "projects/cloudflare-stream/src/lib/cloudflare-stream.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -65,7 +75,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nURL to a VAST advertising tag. If specified, the player will attempt to display ads speficied by the VAST ad schema.\n",
                     "description": "<p>URL to a VAST advertising tag. If specified, the player will attempt to display ads speficied by the VAST ad schema.</p>\n",
-                    "line": 85,
+                    "line": 87,
                     "type": "string",
                     "decorators": []
                 },
@@ -75,7 +85,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nTells the browser to immediately start downloading the video and play it as soon as it can. Note that mobile browsers generally do not support this attribute, the user must tap the screen to begin video playback. Please consider mobile users or users with Internet usage limits as some users don’t have unlimited Internet access before using this attribute.\n\nTo disable video autoplay, the autoplay attribute needs to be removed altogether as this attribute. Setting autoplay=\"false\" will not work; the video will autoplay if the attribute is there in the <stream> tag.\n\nIn addition, some browsers now prevent videos with audio from playing automatically. You may add the mute attribute to allow your videos to autoplay. For more information, [go here](https://webkit.org/blog/6784/new-video-policies-for-ios/).\n",
                     "description": "<p>Tells the browser to immediately start downloading the video and play it as soon as it can. Note that mobile browsers generally do not support this attribute, the user must tap the screen to begin video playback. Please consider mobile users or users with Internet usage limits as some users don’t have unlimited Internet access before using this attribute.</p>\n<p>To disable video autoplay, the autoplay attribute needs to be removed altogether as this attribute. Setting autoplay=&quot;false&quot; will not work; the video will autoplay if the attribute is there in the <stream> tag.</p>\n<p>In addition, some browsers now prevent videos with audio from playing automatically. You may add the mute attribute to allow your videos to autoplay. For more information, <a href=\"https://webkit.org/blog/6784/new-video-policies-for-ios/\">go here</a>.</p>\n",
-                    "line": 93,
+                    "line": 95,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -85,7 +95,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nShows the default video controls such as buttons for play/pause, volume controls. You may choose to build buttons and controls that work with the player.\n",
                     "description": "<p>Shows the default video controls such as buttons for play/pause, volume controls. You may choose to build buttons and controls that work with the player.</p>\n",
-                    "line": 97,
+                    "line": 99,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -95,7 +105,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nReturns the current playback time in seconds. Setting this value seeks the video to a new time.\n",
                     "description": "<p>Returns the current playback time in seconds. Setting this value seeks the video to a new time.</p>\n",
-                    "line": 101,
+                    "line": 103,
                     "type": "number",
                     "decorators": []
                 },
@@ -105,7 +115,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nReturns the current playback time in seconds. Setting this value seeks the video to a new time.\n",
                     "description": "<p>Returns the current playback time in seconds. Setting this value seeks the video to a new time.</p>\n",
-                    "line": 105,
+                    "line": 107,
                     "type": "string",
                     "decorators": []
                 },
@@ -115,7 +125,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nThe height of the video’s display area, in CSS pixels.\n",
                     "description": "<p>The height of the video’s display area, in CSS pixels.</p>\n",
-                    "line": 109,
+                    "line": 111,
                     "type": "string",
                     "decorators": []
                 },
@@ -125,7 +135,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nA Boolean attribute; if included the player will automatically seek back to the start upon reaching the end of the video.\n",
                     "description": "<p>A Boolean attribute; if included the player will automatically seek back to the start upon reaching the end of the video.</p>\n",
-                    "line": 113,
+                    "line": 115,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -135,7 +145,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nA Boolean attribute which indicates the default setting of the audio contained in the video. If set, the audio will be initially silenced.\n",
                     "description": "<p>A Boolean attribute which indicates the default setting of the audio contained in the video. If set, the audio will be initially silenced.</p>\n",
-                    "line": 117,
+                    "line": 119,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -145,7 +155,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nA URL for an image to be shown before the video is started or while the video is downloading. If this attribute isn’t specified, a thumbnail image of the video is shown.\n",
                     "description": "<p>A URL for an image to be shown before the video is started or while the video is downloading. If this attribute isn’t specified, a thumbnail image of the video is shown.</p>\n",
-                    "line": 121,
+                    "line": 123,
                     "type": "string",
                     "decorators": []
                 },
@@ -155,7 +165,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nThis enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience. You may choose to include this attribute as a boolean attribute without a value, or you may specify the value preload=\"auto\" to preload the beginning of the video. Not including the attribute or using preload=\"metadata\" will just load the metadata needed to start video playback when requested.\n\nThe <video> element does not force the browser to follow the value of this attribute; it is a mere hint. Even though the preload=\"none\" option is a valid HTML5 attribute, Stream player will always load some metadata to initialize the player. The amount of data loaded in this case is negligable.\n",
                     "description": "<p>This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience. You may choose to include this attribute as a boolean attribute without a value, or you may specify the value preload=&quot;auto&quot; to preload the beginning of the video. Not including the attribute or using preload=&quot;metadata&quot; will just load the metadata needed to start video playback when requested.</p>\n<p>The <video> element does not force the browser to follow the value of this attribute; it is a mere hint. Even though the preload=&quot;none&quot; option is a valid HTML5 attribute, Stream player will always load some metadata to initialize the player. The amount of data loaded in this case is negligable.</p>\n",
-                    "line": 127,
+                    "line": 129,
                     "type": "\"auto\" | \"metadata\" | \"none\" | boolean",
                     "decorators": []
                 },
@@ -165,7 +175,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nAny valid CSS color value provided will be applied to certain elements of the player's UI.\nhttps://developer.mozilla.org/en-US/docs/Web/CSS/color_value\n",
                     "description": "<p>Any valid CSS color value provided will be applied to certain elements of the player&#39;s UI.\n<a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/color_value\">https://developer.mozilla.org/en-US/docs/Web/CSS/color_value</a></p>\n",
-                    "line": 132,
+                    "line": 134,
                     "type": "string",
                     "decorators": []
                 },
@@ -175,7 +185,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nEither the video id or the signed url for the video you’ve uploaded to Cloudflare Stream should be included here.\n",
                     "description": "<p>Either the video id or the signed url for the video you’ve uploaded to Cloudflare Stream should be included here.</p>\n",
-                    "line": 136,
+                    "line": 138,
                     "type": "string",
                     "decorators": []
                 },
@@ -185,7 +195,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSets volume from 0.0 (silent) to 1.0 (maximum value)\n",
                     "description": "<p>Sets volume from 0.0 (silent) to 1.0 (maximum value)</p>\n",
-                    "line": 140,
+                    "line": 142,
                     "type": "number",
                     "decorators": []
                 },
@@ -195,7 +205,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nThe width of the video’s display area, in CSS pixels.\n",
                     "description": "<p>The width of the video’s display area, in CSS pixels.</p>\n",
-                    "line": 144,
+                    "line": 146,
                     "type": "string",
                     "decorators": []
                 }
@@ -208,7 +218,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when playback is aborted; for example, if the media is playing and is restarted from the beginning, this event is sent.\n",
                     "description": "<p>Sent when playback is aborted; for example, if the media is playing and is restarted from the beginning, this event is sent.</p>\n",
-                    "line": 150,
+                    "line": 152,
                     "type": "EventEmitter"
                 },
                 {
@@ -218,7 +228,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when enough data is available that the media can be played, at least for a couple of frames.\n",
                     "description": "<p>Sent when enough data is available that the media can be played, at least for a couple of frames.</p>\n",
-                    "line": 154,
+                    "line": 156,
                     "type": "EventEmitter"
                 },
                 {
@@ -228,7 +238,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when the entire media can be played without interruption, assuming the download rate remains at least at the current level. It will also be fired when playback is toggled between paused and playing. Note: Manually setting the currentTime will eventually fire a canplaythrough event in firefox. Other browsers might not fire this event.\n",
                     "description": "<p>Sent when the entire media can be played without interruption, assuming the download rate remains at least at the current level. It will also be fired when playback is toggled between paused and playing. Note: Manually setting the currentTime will eventually fire a canplaythrough event in firefox. Other browsers might not fire this event.</p>\n",
-                    "line": 158,
+                    "line": 160,
                     "type": "EventEmitter"
                 },
                 {
@@ -238,7 +248,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nThe metadata has loaded or changed, indicating a change in duration of the media. This is sent, for example, when the media has loaded enough that the duration is known.\n",
                     "description": "<p>The metadata has loaded or changed, indicating a change in duration of the media. This is sent, for example, when the media has loaded enough that the duration is known.</p>\n",
-                    "line": 162,
+                    "line": 164,
                     "type": "EventEmitter"
                 },
                 {
@@ -248,7 +258,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when playback completes.\n",
                     "description": "<p>Sent when playback completes.</p>\n",
-                    "line": 166,
+                    "line": 168,
                     "type": "EventEmitter"
                 },
                 {
@@ -258,7 +268,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when an error occurs. (e.g. the video has not finished encoding yet, or the video fails to load due to an incorrect signed URL)\n",
                     "description": "<p>Sent when an error occurs. (e.g. the video has not finished encoding yet, or the video fails to load due to an incorrect signed URL)</p>\n",
-                    "line": 170,
+                    "line": 172,
                     "type": "EventEmitter"
                 },
                 {
@@ -268,7 +278,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nThe first frame of the media has finished loading.\n",
                     "description": "<p>The first frame of the media has finished loading.</p>\n",
-                    "line": 174,
+                    "line": 176,
                     "type": "EventEmitter"
                 },
                 {
@@ -278,7 +288,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nThe media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.\n",
                     "description": "<p>The media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.</p>\n",
-                    "line": 178,
+                    "line": 180,
                     "type": "EventEmitter"
                 },
                 {
@@ -288,7 +298,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when loading of the media begins.\n",
                     "description": "<p>Sent when loading of the media begins.</p>\n",
-                    "line": 182,
+                    "line": 184,
                     "type": "EventEmitter"
                 },
                 {
@@ -298,7 +308,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when the playback state is changed to paused (paused property is true).\n",
                     "description": "<p>Sent when the playback state is changed to paused (paused property is true).</p>\n",
-                    "line": 186,
+                    "line": 188,
                     "type": "EventEmitter"
                 },
                 {
@@ -308,7 +318,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when the playback state is no longer paused, as a result of the play method, or the autoplay attribute.\n",
                     "description": "<p>Sent when the playback state is no longer paused, as a result of the play method, or the autoplay attribute.</p>\n",
-                    "line": 190,
+                    "line": 192,
                     "type": "EventEmitter"
                 },
                 {
@@ -318,7 +328,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when the media has enough data to start playing, after the play event, but also when recovering from being stalled, when looping media restarts, and after seeked, if it was playing before seeking.\n",
                     "description": "<p>Sent when the media has enough data to start playing, after the play event, but also when recovering from being stalled, when looping media restarts, and after seeked, if it was playing before seeking.</p>\n",
-                    "line": 194,
+                    "line": 196,
                     "type": "EventEmitter"
                 },
                 {
@@ -328,7 +338,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent periodically to inform interested parties of progress downloading the media. Information about the current amount of the media that has been downloaded is available in the media element’s buffered attribute.\n",
                     "description": "<p>Sent periodically to inform interested parties of progress downloading the media. Information about the current amount of the media that has been downloaded is available in the media element’s buffered attribute.</p>\n",
-                    "line": 198,
+                    "line": 200,
                     "type": "EventEmitter"
                 },
                 {
@@ -338,7 +348,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when the playback speed changes.\n",
                     "description": "<p>Sent when the playback speed changes.</p>\n",
-                    "line": 202,
+                    "line": 204,
                     "type": "EventEmitter"
                 },
                 {
@@ -348,7 +358,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when a seek operation completes.\n",
                     "description": "<p>Sent when a seek operation completes.</p>\n",
-                    "line": 206,
+                    "line": 208,
                     "type": "EventEmitter"
                 },
                 {
@@ -358,7 +368,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when a seek operation begins.\n",
                     "description": "<p>Sent when a seek operation begins.</p>\n",
-                    "line": 211,
+                    "line": 213,
                     "type": "EventEmitter"
                 },
                 {
@@ -368,7 +378,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.\n",
                     "description": "<p>Sent when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.</p>\n",
-                    "line": 215,
+                    "line": 217,
                     "type": "EventEmitter"
                 },
                 {
@@ -378,7 +388,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nFires when ad-url attribute is present and the ad finishes playback\n",
                     "description": "<p>Fires when ad-url attribute is present and the ad finishes playback</p>\n",
-                    "line": 239,
+                    "line": 241,
                     "type": "EventEmitter"
                 },
                 {
@@ -388,7 +398,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nFires when ad-url attribute is present and the ad begins playback\n",
                     "description": "<p>Fires when ad-url attribute is present and the ad begins playback</p>\n",
-                    "line": 235,
+                    "line": 237,
                     "type": "EventEmitter"
                 },
                 {
@@ -398,7 +408,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nFires when ad-url attribute is present and the ad took too long to load.\n",
                     "description": "<p>Fires when ad-url attribute is present and the ad took too long to load.</p>\n",
-                    "line": 243,
+                    "line": 245,
                     "type": "EventEmitter"
                 },
                 {
@@ -408,7 +418,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when loading of the media is suspended; this may happen either because the download has completed or because it has been paused for any other reason.\n",
                     "description": "<p>Sent when loading of the media is suspended; this may happen either because the download has completed or because it has been paused for any other reason.</p>\n",
-                    "line": 219,
+                    "line": 221,
                     "type": "EventEmitter"
                 },
                 {
@@ -418,7 +428,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nThe time indicated by the element’s currentTime attribute has changed.\n",
                     "description": "<p>The time indicated by the element’s currentTime attribute has changed.</p>\n",
-                    "line": 223,
+                    "line": 225,
                     "type": "EventEmitter"
                 },
                 {
@@ -428,7 +438,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when the audio volume changes (both when the volume is set and when the muted attribute is changed).\n",
                     "description": "<p>Sent when the audio volume changes (both when the volume is set and when the muted attribute is changed).</p>\n",
-                    "line": 227,
+                    "line": 229,
                     "type": "EventEmitter"
                 },
                 {
@@ -438,7 +448,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSent when the requested operation (such as playback) is delayed pending the completion of another operation (such as a seek).\n",
                     "description": "<p>Sent when the requested operation (such as playback) is delayed pending the completion of another operation (such as a seek).</p>\n",
-                    "line": 231,
+                    "line": 233,
                     "type": "EventEmitter"
                 }
             ],
@@ -450,7 +460,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 245,
+                    "line": 247,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -465,7 +475,7 @@
                     "type": "HTMLScriptElement",
                     "optional": true,
                     "description": "",
-                    "line": 80,
+                    "line": 82,
                     "modifierKind": [
                         121
                     ]
@@ -478,7 +488,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 313,
+                    "line": 321,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -491,7 +501,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 301,
+                    "line": 308,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -504,7 +514,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 286,
+                    "line": 289,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -521,7 +531,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 252,
+                    "line": 255,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -542,7 +552,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 317,
+                    "line": 326,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -559,7 +569,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 276,
+                    "line": 279,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nMethod to take an object and sync keys from propertyProps onto\nthe stream element\n",
@@ -587,7 +597,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  AfterViewInit,\n  Component,\n  EventEmitter,\n  Inject,\n  Input,\n  OnChanges,\n  OnDestroy,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewChild,\n} from '@angular/core';\nimport { DocumentWrapper } from './document-wrapper';\n\nconst propertyProps = [\n  'autoplay',\n  'controls',\n  'currentTime',\n  'primaryColor',\n  'muted',\n  'loop',\n  'volume',\n  'preload',\n  'defaultTextTrack',\n] as const;\n\n@Component({\n  selector: 'cloudflare-stream',\n  // attr. prefix is required for our attributes since <stream /> is a non-standard\n  // element and angular will not bind the attributes without it.\n  template: `\n    <stream\n      #streamEl\n      [attr.ad-url]=\"adUrl\"\n      [attr.src]=\"src\"\n      [attr.autoplay]=\"autoplay\"\n      [attr.controls]=\"controls\"\n      [attr.default-text-track]=\"defaultTextTrack\"\n      [attr.loop]=\"loop\"\n      [attr.preload]=\"preload\"\n      [attr.height]=\"height\"\n      [attr.width]=\"width\"\n      [attr.poster]=\"poster\"\n      [attr.primary-color]=\"primaryColor\"\n      [attr.muted]=\"muted\"\n      (play)=\"play.emit($event)\"\n      (abort)=\"abort.emit($event)\"\n      (canplay)=\"canplay.emit($event)\"\n      (canplaythrough)=\"canplaythrough.emit($event)\"\n      (durationchange)=\"durationchange.emit($event)\"\n      (ended)=\"ended.emit($event)\"\n      (error)=\"error.emit($event)\"\n      (loadeddata)=\"loadeddata.emit($event)\"\n      (loadedmetadata)=\"loadedmetadata.emit($event)\"\n      (loadstart)=\"loadstart.emit($event)\"\n      (pause)=\"pause.emit($event)\"\n      (play)=\"play.emit($event)\"\n      (playing)=\"playing.emit($event)\"\n      (progress)=\"progress.emit($event)\"\n      (ratechange)=\"ratechange.emit($event)\"\n      (seeked)=\"seeked.emit($event)\"\n      (seeking)=\"seeking.emit($event)\"\n      (stalled)=\"stalled.emit($event)\"\n      (suspend)=\"suspend.emit($event)\"\n      (timeupdate)=\"timeupdate.emit($event)\"\n      (volumechange)=\"volumechange.emit($event)\"\n      (waiting)=\"waiting.emit($event)\"\n      (stream-adstart)=\"streamAdStart.emit($event)\"\n      (stream-adend)=\"streamAdEnd.emit($event)\"\n      (stream-adtimeout)=\"streamAdTimeout.emit($event)\"\n    ></stream>\n  `,\n  styles: [],\n})\nexport class CloudflareStreamComponent\n  implements OnDestroy, AfterViewInit, OnChanges\n{\n  // place to store reference to the script tag added to the dom\n  private streamScript?: HTMLScriptElement;\n\n  /**\n   * URL to a VAST advertising tag. If specified, the player will attempt to display ads speficied by the VAST ad schema.\n   */\n  @Input() adUrl?: string;\n  /**\n   * Tells the browser to immediately start downloading the video and play it as soon as it can. Note that mobile browsers generally do not support this attribute, the user must tap the screen to begin video playback. Please consider mobile users or users with Internet usage limits as some users don’t have unlimited Internet access before using this attribute.\n   *\n   * To disable video autoplay, the autoplay attribute needs to be removed altogether as this attribute. Setting autoplay=\"false\" will not work; the video will autoplay if the attribute is there in the <stream> tag.\n   *\n   * In addition, some browsers now prevent videos with audio from playing automatically. You may add the mute attribute to allow your videos to autoplay. For more information, [go here](https://webkit.org/blog/6784/new-video-policies-for-ios/).\n   */\n  @Input() autoplay?: boolean;\n  /**\n   * Shows the default video controls such as buttons for play/pause, volume controls. You may choose to build buttons and controls that work with the player.\n   */\n  @Input() controls?: boolean;\n  /**\n   * Returns the current playback time in seconds. Setting this value seeks the video to a new time.\n   */\n  @Input() currentTime?: number;\n  /**\n   * Returns the current playback time in seconds. Setting this value seeks the video to a new time.\n   */\n  @Input() defaultTextTrack?: string;\n  /**\n   * The height of the video’s display area, in CSS pixels.\n   */\n  @Input() height?: string;\n  /**\n   * A Boolean attribute; if included the player will automatically seek back to the start upon reaching the end of the video.\n   */\n  @Input() loop?: boolean;\n  /**\n   * A Boolean attribute which indicates the default setting of the audio contained in the video. If set, the audio will be initially silenced.\n   */\n  @Input() muted?: boolean;\n  /**\n   * A URL for an image to be shown before the video is started or while the video is downloading. If this attribute isn’t specified, a thumbnail image of the video is shown.\n   */\n  @Input() poster?: string;\n  /**\n   * This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience. You may choose to include this attribute as a boolean attribute without a value, or you may specify the value preload=\"auto\" to preload the beginning of the video. Not including the attribute or using preload=\"metadata\" will just load the metadata needed to start video playback when requested.\n   *\n   * The <video> element does not force the browser to follow the value of this attribute; it is a mere hint. Even though the preload=\"none\" option is a valid HTML5 attribute, Stream player will always load some metadata to initialize the player. The amount of data loaded in this case is negligable.\n   */\n  @Input() preload?: 'auto' | 'metadata' | 'none' | boolean;\n  /**\n   * Any valid CSS color value provided will be applied to certain elements of the player's UI.\n   * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value\n   */\n  @Input() primaryColor?: string;\n  /**\n   * Either the video id or the signed url for the video you’ve uploaded to Cloudflare Stream should be included here.\n   */\n  @Input() src!: string;\n  /**\n   * Sets volume from 0.0 (silent) to 1.0 (maximum value)\n   */\n  @Input() volume?: number;\n  /**\n   * The width of the video’s display area, in CSS pixels.\n   */\n  @Input() width?: string;\n\n  // tslint:disable: no-output-native\n  /**\n   * Sent when playback is aborted; for example, if the media is playing and is restarted from the beginning, this event is sent.\n   */\n  @Output() abort = new EventEmitter<Event>();\n  /**\n   * Sent when enough data is available that the media can be played, at least for a couple of frames.\n   */\n  @Output() canplay = new EventEmitter<Event>();\n  /**\n   * Sent when the entire media can be played without interruption, assuming the download rate remains at least at the current level. It will also be fired when playback is toggled between paused and playing. Note: Manually setting the currentTime will eventually fire a canplaythrough event in firefox. Other browsers might not fire this event.\n   */\n  @Output() canplaythrough = new EventEmitter<Event>();\n  /**\n   * The metadata has loaded or changed, indicating a change in duration of the media. This is sent, for example, when the media has loaded enough that the duration is known.\n   */\n  @Output() durationchange = new EventEmitter<Event>();\n  /**\n   * Sent when playback completes.\n   */\n  @Output() ended = new EventEmitter<Event>();\n  /**\n   * Sent when an error occurs. (e.g. the video has not finished encoding yet, or the video fails to load due to an incorrect signed URL)\n   */\n  @Output() error = new EventEmitter<Event>();\n  /**\n   * The first frame of the media has finished loading.\n   */\n  @Output() loadeddata = new EventEmitter<Event>();\n  /**\n   * The media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.\n   */\n  @Output() loadedmetadata = new EventEmitter<Event>();\n  /**\n   * Sent when loading of the media begins.\n   */\n  @Output() loadstart = new EventEmitter<Event>();\n  /**\n   * Sent when the playback state is changed to paused (paused property is true).\n   */\n  @Output() pause = new EventEmitter<Event>();\n  /**\n   * Sent when the playback state is no longer paused, as a result of the play method, or the autoplay attribute.\n   */\n  @Output() play = new EventEmitter<Event>();\n  /**\n   * Sent when the media has enough data to start playing, after the play event, but also when recovering from being stalled, when looping media restarts, and after seeked, if it was playing before seeking.\n   */\n  @Output() playing = new EventEmitter<Event>();\n  /**\n   * Sent periodically to inform interested parties of progress downloading the media. Information about the current amount of the media that has been downloaded is available in the media element’s buffered attribute.\n   */\n  @Output() progress = new EventEmitter<Event>();\n  /**\n   * Sent when the playback speed changes.\n   */\n  @Output() ratechange = new EventEmitter<Event>();\n  /**\n   * Sent when a seek operation completes.\n   */\n  @Output() seeked = new EventEmitter<Event>();\n\n  /**\n   * Sent when a seek operation begins.\n   */\n  @Output() seeking = new EventEmitter<Event>();\n  /**\n   * Sent when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.\n   */\n  @Output() stalled = new EventEmitter<Event>();\n  /**\n   * Sent when loading of the media is suspended; this may happen either because the download has completed or because it has been paused for any other reason.\n   */\n  @Output() suspend = new EventEmitter<Event>();\n  /**\n   * The time indicated by the element’s currentTime attribute has changed.\n   */\n  @Output() timeupdate = new EventEmitter<Event>();\n  /**\n   * Sent when the audio volume changes (both when the volume is set and when the muted attribute is changed).\n   */\n  @Output() volumechange = new EventEmitter<Event>();\n  /**\n   * Sent when the requested operation (such as playback) is delayed pending the completion of another operation (such as a seek).\n   */\n  @Output() waiting = new EventEmitter<Event>();\n  /**\n   * Fires when ad-url attribute is present and the ad begins playback\n   */\n  @Output() streamAdStart = new EventEmitter<Event>();\n  /**\n   * Fires when ad-url attribute is present and the ad finishes playback\n   */\n  @Output() streamAdEnd = new EventEmitter<Event>();\n  /**\n   * Fires when ad-url attribute is present and the ad took too long to load.\n   */\n  @Output() streamAdTimeout = new EventEmitter<Event>();\n\n  @ViewChild('streamEl') streamEl!: any;\n\n  constructor(\n    private renderer2: Renderer2,\n    @Inject(DocumentWrapper) private doc: DocumentWrapper\n  ) {}\n\n  ngOnChanges(changes: SimpleChanges) {\n    // ngOnChanges fires when the component mounts but before the view\n    // is initialized, so we need to bail when this fires for the first\n    // time.\n    if (!this.streamEl) {\n      return;\n    }\n    // convert SimpleChanges into a Record that has currentValues to be\n    // synced onto streamEl\n    this.syncProperties(\n      Object.keys(changes).reduce(\n        (acc, key) => ({\n          ...acc,\n          [key]: changes[key].currentValue,\n        }),\n        {}\n      )\n    );\n  }\n\n  /**\n   * Method to take an object and sync keys from propertyProps onto\n   * the stream element\n   */\n  private syncProperties(properties: Record<string, any>) {\n    // iterate over the propertyProps and assign them to the streamEl\n    propertyProps.forEach((prop) => {\n      // only assign the property if it is present\n      if (properties.hasOwnProperty(prop)) {\n        this.streamEl.nativeElement[prop] = properties[prop];\n      }\n    });\n  }\n\n  ngAfterViewInit() {\n    // streamEl is first available within ngAfterViewInit, so we need to sync\n    // properties onto the element\n    this.syncProperties(\n      // pluck current propertyProps off of the component instance to sync them to streamEl\n      propertyProps.reduce(\n        (acc, prop) =>\n          // skip values that are undefined\n          this[prop] === undefined ? acc : { ...acc, [prop]: this[prop] },\n        {}\n      )\n    );\n    this.loadStreamScript();\n  }\n\n  private loadStreamScript() {\n    this.streamScript = document.createElement('script');\n    this.streamScript.setAttribute('data-cfasync', 'false');\n    this.streamScript.setAttribute('defer', 'true');\n    this.streamScript.setAttribute('type', 'text/javascript');\n    this.streamScript.setAttribute(\n      'src',\n      'https://embed.videodelivery.net/embed/r4xu.fla9.latest.js'\n    );\n    this.renderer2.appendChild(this.doc.head, this.streamScript);\n  }\n\n  private cleanUpStreamScript() {\n    this.renderer2.removeChild(this.doc.head, this.streamScript);\n  }\n\n  ngOnDestroy() {\n    this.cleanUpStreamScript();\n  }\n}\n",
+            "sourceCode": "import { isPlatformBrowser } from '@angular/common';\nimport {\n  AfterViewInit,\n  Component,\n  EventEmitter,\n  Inject,\n  Input,\n  OnChanges,\n  OnDestroy,\n  Output,\n  PLATFORM_ID,\n  Renderer2,\n  SimpleChanges,\n  ViewChild,\n} from '@angular/core';\nimport { DocumentWrapper } from './document-wrapper';\n\nconst propertyProps = [\n  'autoplay',\n  'controls',\n  'currentTime',\n  'primaryColor',\n  'muted',\n  'loop',\n  'volume',\n  'preload',\n  'defaultTextTrack',\n] as const;\n\n@Component({\n  selector: 'cloudflare-stream',\n  // attr. prefix is required for our attributes since <stream /> is a non-standard\n  // element and angular will not bind the attributes without it.\n  template: `\n    <stream\n      #streamEl\n      [attr.ad-url]=\"adUrl\"\n      [attr.src]=\"src\"\n      [attr.autoplay]=\"autoplay\"\n      [attr.controls]=\"controls\"\n      [attr.default-text-track]=\"defaultTextTrack\"\n      [attr.loop]=\"loop\"\n      [attr.preload]=\"preload\"\n      [attr.height]=\"height\"\n      [attr.width]=\"width\"\n      [attr.poster]=\"poster\"\n      [attr.primary-color]=\"primaryColor\"\n      [attr.muted]=\"muted\"\n      (play)=\"play.emit($event)\"\n      (abort)=\"abort.emit($event)\"\n      (canplay)=\"canplay.emit($event)\"\n      (canplaythrough)=\"canplaythrough.emit($event)\"\n      (durationchange)=\"durationchange.emit($event)\"\n      (ended)=\"ended.emit($event)\"\n      (error)=\"error.emit($event)\"\n      (loadeddata)=\"loadeddata.emit($event)\"\n      (loadedmetadata)=\"loadedmetadata.emit($event)\"\n      (loadstart)=\"loadstart.emit($event)\"\n      (pause)=\"pause.emit($event)\"\n      (play)=\"play.emit($event)\"\n      (playing)=\"playing.emit($event)\"\n      (progress)=\"progress.emit($event)\"\n      (ratechange)=\"ratechange.emit($event)\"\n      (seeked)=\"seeked.emit($event)\"\n      (seeking)=\"seeking.emit($event)\"\n      (stalled)=\"stalled.emit($event)\"\n      (suspend)=\"suspend.emit($event)\"\n      (timeupdate)=\"timeupdate.emit($event)\"\n      (volumechange)=\"volumechange.emit($event)\"\n      (waiting)=\"waiting.emit($event)\"\n      (stream-adstart)=\"streamAdStart.emit($event)\"\n      (stream-adend)=\"streamAdEnd.emit($event)\"\n      (stream-adtimeout)=\"streamAdTimeout.emit($event)\"\n    ></stream>\n  `,\n  styles: [],\n})\nexport class CloudflareStreamComponent\n  implements OnDestroy, AfterViewInit, OnChanges\n{\n  // place to store reference to the script tag added to the dom\n  private streamScript?: HTMLScriptElement;\n\n  /**\n   * URL to a VAST advertising tag. If specified, the player will attempt to display ads speficied by the VAST ad schema.\n   */\n  @Input() adUrl?: string;\n  /**\n   * Tells the browser to immediately start downloading the video and play it as soon as it can. Note that mobile browsers generally do not support this attribute, the user must tap the screen to begin video playback. Please consider mobile users or users with Internet usage limits as some users don’t have unlimited Internet access before using this attribute.\n   *\n   * To disable video autoplay, the autoplay attribute needs to be removed altogether as this attribute. Setting autoplay=\"false\" will not work; the video will autoplay if the attribute is there in the <stream> tag.\n   *\n   * In addition, some browsers now prevent videos with audio from playing automatically. You may add the mute attribute to allow your videos to autoplay. For more information, [go here](https://webkit.org/blog/6784/new-video-policies-for-ios/).\n   */\n  @Input() autoplay?: boolean;\n  /**\n   * Shows the default video controls such as buttons for play/pause, volume controls. You may choose to build buttons and controls that work with the player.\n   */\n  @Input() controls?: boolean;\n  /**\n   * Returns the current playback time in seconds. Setting this value seeks the video to a new time.\n   */\n  @Input() currentTime?: number;\n  /**\n   * Returns the current playback time in seconds. Setting this value seeks the video to a new time.\n   */\n  @Input() defaultTextTrack?: string;\n  /**\n   * The height of the video’s display area, in CSS pixels.\n   */\n  @Input() height?: string;\n  /**\n   * A Boolean attribute; if included the player will automatically seek back to the start upon reaching the end of the video.\n   */\n  @Input() loop?: boolean;\n  /**\n   * A Boolean attribute which indicates the default setting of the audio contained in the video. If set, the audio will be initially silenced.\n   */\n  @Input() muted?: boolean;\n  /**\n   * A URL for an image to be shown before the video is started or while the video is downloading. If this attribute isn’t specified, a thumbnail image of the video is shown.\n   */\n  @Input() poster?: string;\n  /**\n   * This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience. You may choose to include this attribute as a boolean attribute without a value, or you may specify the value preload=\"auto\" to preload the beginning of the video. Not including the attribute or using preload=\"metadata\" will just load the metadata needed to start video playback when requested.\n   *\n   * The <video> element does not force the browser to follow the value of this attribute; it is a mere hint. Even though the preload=\"none\" option is a valid HTML5 attribute, Stream player will always load some metadata to initialize the player. The amount of data loaded in this case is negligable.\n   */\n  @Input() preload?: 'auto' | 'metadata' | 'none' | boolean;\n  /**\n   * Any valid CSS color value provided will be applied to certain elements of the player's UI.\n   * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value\n   */\n  @Input() primaryColor?: string;\n  /**\n   * Either the video id or the signed url for the video you’ve uploaded to Cloudflare Stream should be included here.\n   */\n  @Input() src!: string;\n  /**\n   * Sets volume from 0.0 (silent) to 1.0 (maximum value)\n   */\n  @Input() volume?: number;\n  /**\n   * The width of the video’s display area, in CSS pixels.\n   */\n  @Input() width?: string;\n\n  // tslint:disable: no-output-native\n  /**\n   * Sent when playback is aborted; for example, if the media is playing and is restarted from the beginning, this event is sent.\n   */\n  @Output() abort = new EventEmitter<Event>();\n  /**\n   * Sent when enough data is available that the media can be played, at least for a couple of frames.\n   */\n  @Output() canplay = new EventEmitter<Event>();\n  /**\n   * Sent when the entire media can be played without interruption, assuming the download rate remains at least at the current level. It will also be fired when playback is toggled between paused and playing. Note: Manually setting the currentTime will eventually fire a canplaythrough event in firefox. Other browsers might not fire this event.\n   */\n  @Output() canplaythrough = new EventEmitter<Event>();\n  /**\n   * The metadata has loaded or changed, indicating a change in duration of the media. This is sent, for example, when the media has loaded enough that the duration is known.\n   */\n  @Output() durationchange = new EventEmitter<Event>();\n  /**\n   * Sent when playback completes.\n   */\n  @Output() ended = new EventEmitter<Event>();\n  /**\n   * Sent when an error occurs. (e.g. the video has not finished encoding yet, or the video fails to load due to an incorrect signed URL)\n   */\n  @Output() error = new EventEmitter<Event>();\n  /**\n   * The first frame of the media has finished loading.\n   */\n  @Output() loadeddata = new EventEmitter<Event>();\n  /**\n   * The media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.\n   */\n  @Output() loadedmetadata = new EventEmitter<Event>();\n  /**\n   * Sent when loading of the media begins.\n   */\n  @Output() loadstart = new EventEmitter<Event>();\n  /**\n   * Sent when the playback state is changed to paused (paused property is true).\n   */\n  @Output() pause = new EventEmitter<Event>();\n  /**\n   * Sent when the playback state is no longer paused, as a result of the play method, or the autoplay attribute.\n   */\n  @Output() play = new EventEmitter<Event>();\n  /**\n   * Sent when the media has enough data to start playing, after the play event, but also when recovering from being stalled, when looping media restarts, and after seeked, if it was playing before seeking.\n   */\n  @Output() playing = new EventEmitter<Event>();\n  /**\n   * Sent periodically to inform interested parties of progress downloading the media. Information about the current amount of the media that has been downloaded is available in the media element’s buffered attribute.\n   */\n  @Output() progress = new EventEmitter<Event>();\n  /**\n   * Sent when the playback speed changes.\n   */\n  @Output() ratechange = new EventEmitter<Event>();\n  /**\n   * Sent when a seek operation completes.\n   */\n  @Output() seeked = new EventEmitter<Event>();\n\n  /**\n   * Sent when a seek operation begins.\n   */\n  @Output() seeking = new EventEmitter<Event>();\n  /**\n   * Sent when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.\n   */\n  @Output() stalled = new EventEmitter<Event>();\n  /**\n   * Sent when loading of the media is suspended; this may happen either because the download has completed or because it has been paused for any other reason.\n   */\n  @Output() suspend = new EventEmitter<Event>();\n  /**\n   * The time indicated by the element’s currentTime attribute has changed.\n   */\n  @Output() timeupdate = new EventEmitter<Event>();\n  /**\n   * Sent when the audio volume changes (both when the volume is set and when the muted attribute is changed).\n   */\n  @Output() volumechange = new EventEmitter<Event>();\n  /**\n   * Sent when the requested operation (such as playback) is delayed pending the completion of another operation (such as a seek).\n   */\n  @Output() waiting = new EventEmitter<Event>();\n  /**\n   * Fires when ad-url attribute is present and the ad begins playback\n   */\n  @Output() streamAdStart = new EventEmitter<Event>();\n  /**\n   * Fires when ad-url attribute is present and the ad finishes playback\n   */\n  @Output() streamAdEnd = new EventEmitter<Event>();\n  /**\n   * Fires when ad-url attribute is present and the ad took too long to load.\n   */\n  @Output() streamAdTimeout = new EventEmitter<Event>();\n\n  @ViewChild('streamEl') streamEl!: any;\n\n  constructor(\n    private renderer2: Renderer2,\n    @Inject(DocumentWrapper) private doc: DocumentWrapper,\n    @Inject(PLATFORM_ID) private platformId: any\n  ) {}\n\n  ngOnChanges(changes: SimpleChanges) {\n    // ngOnChanges fires when the component mounts but before the view\n    // is initialized, so we need to bail when this fires for the first\n    // time.\n    if (!this.streamEl) {\n      return;\n    }\n    // convert SimpleChanges into a Record that has currentValues to be\n    // synced onto streamEl\n    this.syncProperties(\n      Object.keys(changes).reduce(\n        (acc, key) => ({\n          ...acc,\n          [key]: changes[key].currentValue,\n        }),\n        {}\n      )\n    );\n  }\n\n  /**\n   * Method to take an object and sync keys from propertyProps onto\n   * the stream element\n   */\n  private syncProperties(properties: Record<string, any>) {\n    // iterate over the propertyProps and assign them to the streamEl\n    propertyProps.forEach((prop) => {\n      // only assign the property if it is present\n      if (properties.hasOwnProperty(prop)) {\n        this.streamEl.nativeElement[prop] = properties[prop];\n      }\n    });\n  }\n\n  ngAfterViewInit() {\n    // streamEl is first available within ngAfterViewInit, so we need to sync\n    // properties onto the element\n    this.syncProperties(\n      // pluck current propertyProps off of the component instance to sync them to streamEl\n      propertyProps.reduce(\n        (acc, prop) =>\n          // skip values that are undefined\n          this[prop] === undefined ? acc : { ...acc, [prop]: this[prop] },\n        {}\n      )\n    );\n    this.loadStreamScript();\n  }\n\n  get isBrowser() {\n    return isPlatformBrowser(this.platformId);\n  }\n\n  private loadStreamScript() {\n    if (!this.isBrowser) return;\n    this.streamScript = document.createElement('script');\n    this.streamScript.setAttribute('data-cfasync', 'false');\n    this.streamScript.setAttribute('defer', 'true');\n    this.streamScript.setAttribute('type', 'text/javascript');\n    this.streamScript.setAttribute(\n      'src',\n      'https://embed.videodelivery.net/embed/r4xu.fla9.latest.js'\n    );\n    this.renderer2.appendChild(this.doc.nativeDocument.head, this.streamScript);\n  }\n\n  private cleanUpStreamScript() {\n    if (!this.isBrowser) return;\n    this.renderer2.removeChild(this.doc.nativeDocument.head, this.streamScript);\n  }\n\n  ngOnDestroy() {\n    this.cleanUpStreamScript();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -608,9 +618,15 @@
                         "type": "DocumentWrapper",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "platformId",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 245,
+                "line": 247,
                 "jsdoctags": [
                     {
                         "name": "renderer2",
@@ -629,6 +645,15 @@
                         "tagName": {
                             "text": "param"
                         }
+                    },
+                    {
+                        "name": "platformId",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
                     }
                 ]
             },
@@ -636,19 +661,30 @@
                 "OnDestroy",
                 "AfterViewInit",
                 "OnChanges"
-            ]
+            ],
+            "accessors": {
+                "isBrowser": {
+                    "name": "isBrowser",
+                    "getSignature": {
+                        "name": "isBrowser",
+                        "type": "",
+                        "returnType": "",
+                        "line": 304
+                    }
+                }
+            }
         }
     ],
     "modules": [
         {
             "name": "CloudflareStreamModule",
-            "id": "module-CloudflareStreamModule-7aa2f01c2a8eb4c2aca5ebd1bfeb11d2f774a8deb5e5f7da4301210b2f852f2e1826b310bba613fa6fc806d7f6924ba1f0eb0ad714f5277483fc1f3f73a12225",
+            "id": "module-CloudflareStreamModule-edc3b43d7ab2319c4114878160a44cc654324db1ba4182e6e6924c61a9afdf076d8ef4c581e5efa12a89d84bab729a77178364dc488fa4c5c51d4fcfc2ded166",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/cloudflare-stream/src/lib/cloudflare-stream.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';\nimport { CloudflareStreamComponent } from './cloudflare-stream.component';\nimport { DocumentWrapper, getDocument } from './document-wrapper';\n\n@NgModule({\n  declarations: [CloudflareStreamComponent],\n  // Necessaary because we render a <stream /> element\n  // and Angular will refuse to render this non-standard\n  // element unless we use this.\n  schemas: [NO_ERRORS_SCHEMA],\n  providers: [{ provide: DocumentWrapper, useFactory: getDocument }],\n  imports: [],\n  exports: [CloudflareStreamComponent],\n})\nexport class CloudflareStreamModule {}\n",
+            "sourceCode": "import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';\nimport { CloudflareStreamComponent } from './cloudflare-stream.component';\nimport { DocumentWrapper, getDocumentWrapper } from './document-wrapper';\n\n@NgModule({\n  declarations: [CloudflareStreamComponent],\n  // Necessaary because we render a <stream /> element\n  // and Angular will refuse to render this non-standard\n  // element unless we use this.\n  schemas: [NO_ERRORS_SCHEMA],\n  providers: [{ provide: DocumentWrapper, useFactory: getDocumentWrapper }],\n  imports: [],\n  exports: [CloudflareStreamComponent],\n})\nexport class CloudflareStreamModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -789,15 +825,14 @@
         ],
         "functions": [
             {
-                "name": "getDocument",
+                "name": "getDocumentWrapper",
                 "file": "projects/cloudflare-stream/src/lib/document-wrapper.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "args": [],
-                "returnType": "DocumentWrapper"
+                "args": []
             }
         ],
         "typealiases": [],
@@ -912,15 +947,14 @@
         "groupedFunctions": {
             "projects/cloudflare-stream/src/lib/document-wrapper.ts": [
                 {
-                    "name": "getDocument",
+                    "name": "getDocumentWrapper",
                     "file": "projects/cloudflare-stream/src/lib/document-wrapper.ts",
                     "ctype": "miscellaneous",
                     "subtype": "function",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "args": [],
-                    "returnType": "DocumentWrapper"
+                    "args": []
                 }
             ]
         },
@@ -974,7 +1008,7 @@
                 "type": "function",
                 "linktype": "miscellaneous",
                 "linksubtype": "function",
-                "name": "getDocument",
+                "name": "getDocumentWrapper",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
