@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -7,6 +8,7 @@ import {
   OnChanges,
   OnDestroy,
   Output,
+  PLATFORM_ID,
   Renderer2,
   SimpleChanges,
   ViewChild,
@@ -246,7 +248,8 @@ export class CloudflareStreamComponent
 
   constructor(
     private renderer2: Renderer2,
-    @Inject(DocumentWrapper) private doc: DocumentWrapper
+    @Inject(DocumentWrapper) private doc: DocumentWrapper,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -298,7 +301,12 @@ export class CloudflareStreamComponent
     this.loadStreamScript();
   }
 
+  get isBrowser() {
+    return isPlatformBrowser(this.platformId);
+  }
+
   private loadStreamScript() {
+    if (!this.isBrowser) return;
     this.streamScript = document.createElement('script');
     this.streamScript.setAttribute('data-cfasync', 'false');
     this.streamScript.setAttribute('defer', 'true');
@@ -307,11 +315,12 @@ export class CloudflareStreamComponent
       'src',
       'https://embed.videodelivery.net/embed/r4xu.fla9.latest.js'
     );
-    this.renderer2.appendChild(this.doc.head, this.streamScript);
+    this.renderer2.appendChild(this.doc.nativeDocument.head, this.streamScript);
   }
 
   private cleanUpStreamScript() {
-    this.renderer2.removeChild(this.doc.head, this.streamScript);
+    if (!this.isBrowser) return;
+    this.renderer2.removeChild(this.doc.nativeDocument.head, this.streamScript);
   }
 
   ngOnDestroy() {

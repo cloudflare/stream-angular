@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/angular/types-6-0';
 import { CloudflareStreamComponent } from '../projects/cloudflare-stream/src/public-api';
 import {
   DocumentWrapper,
-  getDocument,
+  getDocumentWrapper,
 } from '../projects/cloudflare-stream/src/lib/document-wrapper';
 
 const parameters = {
@@ -38,7 +38,7 @@ export default {
   },
   decorators: [
     moduleMetadata({
-      providers: [{ provide: DocumentWrapper, useFactory: getDocument }],
+      providers: [{ provide: DocumentWrapper, useFactory: getDocumentWrapper }],
     }),
   ],
 } as Meta;

@@ -8,8 +8,12 @@ import { Injectable } from '@angular/core';
  */
 
 @Injectable()
-export class DocumentWrapper extends Document {}
+export class DocumentWrapper {
+  get nativeDocument() {
+    return document;
+  }
+}
 
-export function getDocument(): DocumentWrapper {
-  return document;
+export function getDocumentWrapper() {
+  return new DocumentWrapper();
 }
