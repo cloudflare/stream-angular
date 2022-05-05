@@ -313,7 +313,7 @@ export class CloudflareStreamComponent
     this.streamScript.setAttribute('type', 'text/javascript');
     this.streamScript.setAttribute(
       'src',
-      'https://embed.videodelivery.net/embed/r4xu.fla9.latest.js'
+      'https://embed.cloudflarestream.com/embed/r4xu.fla9.latest.js'
     );
     this.renderer2.appendChild(this.doc.nativeDocument.head, this.streamScript);
   }
