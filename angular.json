@@ -45,5 +45,7 @@
       }
     }
   },
-  "defaultProject": "cloudflare-stream"
+  "cli": {
+    "analytics": false
+  }
 }
